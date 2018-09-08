@@ -1,5 +1,6 @@
 package com.codingblocks;
 
+
 public class Assignment4 {
     public static void main(String[] args) {
         int[][] nums = {
