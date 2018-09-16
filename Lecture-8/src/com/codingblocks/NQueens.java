@@ -3,11 +3,11 @@ package com.codingblocks;
 public class NQueens {
     public static void main(String[] args) {
 
-        int n = 4;
+        int n = 5;
 
         boolean[][] board = new boolean[n][n];
 
-        display(board);
+//        display(board);
 
         nqueens(board, 0);
 
@@ -44,7 +44,25 @@ public class NQueens {
             }
         }
 
+        // diag left
 
+        int max_left = Math.min(row, col);
+
+        for (int i = 1; i <= max_left ; i++) {
+            if (board[row-i][col-i]){
+                return false;
+            }
+        }
+
+        // diag right
+
+        int max_right = Math.min(row, board.length - col - 1);
+
+        for (int i = 1; i <= max_right ; i++) {
+            if (board[row-i][col+i]){
+                return false;
+            }
+        }
 
         return true;
 
