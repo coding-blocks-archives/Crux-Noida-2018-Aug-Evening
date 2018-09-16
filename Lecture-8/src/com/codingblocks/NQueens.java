@@ -3,7 +3,7 @@ package com.codingblocks;
 public class NQueens {
     public static void main(String[] args) {
 
-        int n = 5;
+        int n = 4;
 
         boolean[][] board = new boolean[n][n];
 
@@ -13,11 +13,14 @@ public class NQueens {
 
     }
 
-    private static void nqueens(boolean[][] board, int row) {
+    private static int nqueens(boolean[][] board, int row) {
         if (row == board.length){
-            System.out.println("You found a solution");
-            return;
+
+            display(board);
+            return 1;
         }
+
+        int acc = 0;
 
         // check each col or row
         for (int col = 0; col < board.length; col++) {
@@ -27,12 +30,14 @@ public class NQueens {
                 // place your queen
                 board[row][col] = true;
 
-                nqueens(board, row +1);
+                acc += nqueens(board, row +1);
 
                 // unplace your queen
                 board[row][col] = false;
             }
         }
+
+        return acc;
     }
 
     private static boolean isSafe(boolean[][] board, int row, int col) {
@@ -71,10 +76,16 @@ public class NQueens {
     public static void display(boolean[][] board) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                System.out.print(board[i][j]);
+                if (board[i][j]){
+                    System.out.print("Q ");
+                } else {
+                    System.out.print("X ");
+                }
             }
             System.out.println();
         }
+
+        System.out.println();
     }
 
 
