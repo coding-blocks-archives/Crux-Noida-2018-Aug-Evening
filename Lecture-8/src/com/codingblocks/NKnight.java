@@ -3,7 +3,7 @@ package com.codingblocks;
 public class NKnight {
     public static void main(String[] args) {
 
-        int n = 2;
+        int n = 4;
 
         boolean[][] board = new boolean[n][n];
 
