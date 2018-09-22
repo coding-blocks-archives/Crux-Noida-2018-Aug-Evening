@@ -6,7 +6,7 @@ public class Sorting {
     public static void main(String[] args) {
         int[] nums = {3, 2, 1, 9, 4};
 
-        mergeSortInPlace(nums, 0, nums.length);
+        quick(nums, 0, nums.length);
 
         System.out.println(Arrays.toString(nums));
     }
@@ -99,5 +99,40 @@ public class Sorting {
         }
 
         return mix;
+    }
+
+    public static void quick(int[] nums, int start, int end){
+        if (end <= start){
+            return;
+        }
+
+        int pivot = end - 1;
+
+        pivot = pivotAdjust(nums, start, end, pivot);
+
+        quick(nums, start, pivot);
+        quick(nums, pivot + 1, end);
+    }
+
+    private static int pivotAdjust(int[] nums, int start, int end, int pivot) {
+
+        int i = start;
+        int j = start;
+
+        for (i = start; i < pivot; i++) {
+            if (nums[i] < nums[pivot]){
+                int t = nums[i];
+                nums[i] = nums[j];
+                nums[j] = t;
+
+                j++;
+            }
+        }
+
+        int t = nums[j];
+        nums[j] = nums[pivot];
+        nums[pivot] = t;
+
+        return j;
     }
 }
