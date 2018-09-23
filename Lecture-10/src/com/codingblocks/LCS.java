@@ -1,9 +1,21 @@
 package com.codingblocks;
 
+import java.util.Arrays;
+
 public class LCS {
 
     public static void main(String[] args) {
-        System.out.println(lcsRec("aman", "manan"));
+
+        String first = "aman";
+        String second = "manan";
+
+        int[][] mem = new int[first.length() + 1][second.length() + 1];
+
+        for (int i = 0; i < mem.length; i++) {
+            Arrays.fill(mem[i], -1);
+        }
+
+        System.out.println(lcsRecDP(first, second, mem));
     }
 
     public static int lcsRec(String first, String second){
@@ -20,6 +32,31 @@ public class LCS {
         } else {
             return Math.max(lcsRec(first.substring(1), second),
                     lcsRec(first, second.substring(1)));
+        }
+    }
+
+    public static int lcsRecDP(String first, String second, int[][] mem){
+        if (first.isEmpty() || second.isEmpty()){
+            return 0;
+        }
+
+        if (mem[first.length()][second.length()] != -1){
+            return mem[first.length()][second.length()];
+        }
+
+        char f = first.charAt(0);
+        char s = second.charAt(0);
+
+        if (f == s){
+            mem[first.length()][second.length()] =  1 + lcsRecDP(first.substring(1),
+                    second.substring(1), mem);
+
+            return mem[first.length()][second.length()];
+        } else {
+            mem[first.length()][second.length()] =  Math.max(lcsRecDP(first.substring(1), second, mem),
+                    lcsRecDP(first, second.substring(1), mem));
+
+            return mem[first.length()][second.length()];
         }
     }
 
