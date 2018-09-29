@@ -1,27 +1,28 @@
 package com.codingblocks;
 
-public class QueueOptimised {
+public class QueueCircular {
     private int[] data;
 
     private static int DEFAULT_SIZE = 10;
 
     private int end = 0;
     private int front = 0;
+    private int size = 0;
 
-    public QueueOptimised(){
+    public QueueCircular(){
         this(DEFAULT_SIZE);
     }
 
-    public QueueOptimised(int size){
+    public QueueCircular(int size){
         this.data = new int[size];
     }
 
     public boolean isFull(){
-        return end == data.length;
+        return size == data.length;
     }
 
     public boolean isEmpty(){
-        return end == front;
+        return size == 0;
     }
 
     public boolean insert(int item){
@@ -31,6 +32,9 @@ public class QueueOptimised {
 
         data[end++] = item;
 
+        end = end % data.length; // restart from index 0
+        size++;
+
         return true;
     }
 
@@ -39,7 +43,13 @@ public class QueueOptimised {
             throw new Exception("Removing from empty Queue");
         }
 
-        return data[front++];
+
+        int temp = data[front++];
+
+        front = front % data.length;
+        size--;
+
+        return temp;
     }
 
     public int front() throws Exception{
