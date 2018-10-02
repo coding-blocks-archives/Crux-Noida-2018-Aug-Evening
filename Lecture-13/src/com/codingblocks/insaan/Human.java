@@ -5,6 +5,8 @@ public class Human implements Comparable<Human> {
     private int age;
     private String name;
 
+    private Human baby;
+
     public Human(int age, String name) {
         this.age = age;
         this.name = name;
@@ -24,6 +26,14 @@ public class Human implements Comparable<Human> {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Human getBaby() {
+        return baby;
+    }
+
+    public void setBaby(Human baby) {
+        this.baby = baby;
     }
 
     @Override

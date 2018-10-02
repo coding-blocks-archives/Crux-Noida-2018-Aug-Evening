@@ -11,23 +11,35 @@ public class Main {
         Human akshar = new Human(20, "Dukhi");
         Human amit = new Human(27, "Amit");
 
-        Human[] arr = {anuj, akshar, amit, mayank};
+        Human mohini = new Human(24, "Mohini");
+        Human neha = new Human(20, "Neha");
 
-//        Arrays.sort(arr, new Comparator<Human>() {
-//            @Override
-//            public int compare(Human o1, Human o2) {
-//                return o1.getAge() - o2.getAge();
-//            }
-//        });
+        Human head = mayank;
+
+        mayank.setBaby(mohini);
+        mohini.setBaby(akshar);
+        akshar.setBaby(neha);
+        neha.setBaby(amit);
+
+
+//        Human[] arr = {anuj, akshar, amit, mayank};
 //
-        Arrays.sort(arr, (o1, o2) -> o1.getAge() - o2.getAge());
+////        Arrays.sort(arr, new Comparator<Human>() {
+////            @Override
+////            public int compare(Human o1, Human o2) {
+////                return o1.getAge() - o2.getAge();
+////            }
+////        });
+////
+//        Arrays.sort(arr, (o1, o2) -> o1.getAge() - o2.getAge());
+//
+//        for (int i = 0; i < arr.length; i++) {
+//            System.out.println(arr[i].getName() + " " + arr[i].getAge());
+//        }
+//
+//        for (Human human : arr) {
+//            System.out.println(human.getName() +" " + human.getAge());
+//        }
 
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i].getName() + " " + arr[i].getAge());
-        }
-
-        for (Human human : arr) {
-            System.out.println(human.getName() +" " + human.getAge());
-        }
     }
 }
