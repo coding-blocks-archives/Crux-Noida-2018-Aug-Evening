@@ -223,18 +223,18 @@ public class LinkedList {
                 if (even_h == null) {
                     even_h = node;
                     even_t = node;
+                } else {
+                    even_t.next = node;
+                    even_t = node;
                 }
-
-                even_t.next = node;
-                even_t = node;
             } else {
                 if (odd_h == null) {
                     odd_h = node;
                     odd_t = node;
+                } else {
+                    odd_t.next = node;
+                    odd_t = node;
                 }
-
-                odd_t.next = node;
-                odd_t = node;
             }
 
             node = node.next;
@@ -248,11 +248,11 @@ public class LinkedList {
         tail.next = null;
     }
 
-    public void duplicates(){
+    public void duplicates() {
         Node node = head;
 
-        while (node.next != null){
-            if (node.value.equals(node.next.value)){
+        while (node.next != null) {
+            if (node.value.equals(node.next.value)) {
                 node.next = node.next.next;
                 size--;
             } else {
@@ -266,14 +266,14 @@ public class LinkedList {
 
     }
 
-    public static LinkedList merge(LinkedList first, LinkedList second){
+    public static LinkedList merge(LinkedList first, LinkedList second) {
         Node f = first.head;
         Node s = second.head;
 
         LinkedList list = new LinkedList();
 
-        while (f != null && s != null){
-            if (f.value.compareTo(s.value) > 0){
+        while (f != null && s != null) {
+            if (f.value.compareTo(s.value) > 0) {
                 list.insertLast(s.value);
                 s = s.next;
             } else {
@@ -282,12 +282,12 @@ public class LinkedList {
             }
         }
 
-        while (f != null){
+        while (f != null) {
             list.insertLast(f.value);
             f = f.next;
         }
 
-        while (s != null){
+        while (s != null) {
             list.insertLast(s.value);
             s = s.next;
         }
@@ -295,11 +295,11 @@ public class LinkedList {
         return list;
     }
 
-    public Node mid(){
+    public Node mid() {
         Node slow = head;
         Node fast = head;
 
-        while (fast.next != null && fast.next.next != null){
+        while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
