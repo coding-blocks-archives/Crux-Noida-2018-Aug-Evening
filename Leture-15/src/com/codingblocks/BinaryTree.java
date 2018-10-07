@@ -1,5 +1,6 @@
 package com.codingblocks;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class BinaryTree {
@@ -146,8 +147,94 @@ public class BinaryTree {
         return 1 + Math.max(height(node.left), height(node.right));
     }
 
+    public int diameter(){
 
-    private class Node {
+        if (root == null){
+            return 0;
+        }
+
+        return 1 + height(root.left) + height(root.right);
+    }
+
+
+    public boolean find(int item){
+        return find(root, item);
+    }
+
+    private boolean find(Node node, int item) {
+        if (node == null){
+            return false;
+        }
+
+        return node.value == item || find(node.left, item) || find(node.right, item);
+    }
+
+    public void mirror(){
+        mirror(root);
+    }
+
+    private void mirror(Node node) {
+        if (node == null){
+            return;
+        }
+
+        Node t = node.left;
+        node.left = node.right;
+        node.right = t;
+
+        mirror(node.left);
+        mirror(node.right);
+    }
+
+    public static BinaryTree treeUsingPreAndIn(int[] pre, int[] in){
+
+        BinaryTree tree = new BinaryTree();
+
+        tree.root = preAndIn(pre, in);
+
+        return tree;
+    }
+
+    public static Node preAndIn(int[] pre, int[] in){
+
+        if (pre.length == 0){
+            return null;
+        }
+
+        int r = pre[0];
+
+        int index = 0;
+
+        for (int i = 0; i < in.length; i++) {
+            if (in[i] == r){
+                index = i;
+            }
+        }
+
+        Node node = new Node(r);
+
+        node.left = preAndIn(Arrays.copyOfRange(pre, 1, index + 1),
+                Arrays.copyOfRange(in, 0, index));
+
+        node.right = preAndIn(Arrays.copyOfRange(pre, index + 1, pre.length),
+                Arrays.copyOfRange(in, index + 1, in.length));
+
+        return node;
+    }
+
+//    public static Node postAndIn(int[] post, int[] in){
+//        if(post.length == 0){
+//            return null;
+//        }
+//
+//        int r = post[post.length - 1];
+//
+//
+//
+//    }
+
+
+    private static class Node {
 
         private int value;
 

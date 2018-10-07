@@ -18,17 +18,25 @@ public class Main {
 
         out = new PrintStream(output);
 
-        BinaryTree tree = new BinaryTree();
+//        BinaryTree tree = new BinaryTree();
+//
+//        File input = new File("input.txt");
+//
+//        tree.populate(new Scanner(input));
+//
+//        tree.mirror();
 
-        File input = new File("input.txt");
+        int[] pre = {10, 20, 15, 13, 12};
+        int[] in = {15, 20, 13, 10, 12};
 
-        tree.populate(new Scanner(input));
+        BinaryTree tree = BinaryTree.treeUsingPreAndIn(pre, in);
 
 //        tree.display();
 //
 //        System.out.println(tree.largest());
 
-        tree.printLevel(2);
+//        tree.printLevel(2);
 
+        tree.display();
     }
 }
