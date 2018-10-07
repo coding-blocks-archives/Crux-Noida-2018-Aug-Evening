@@ -42,6 +42,111 @@ public class BinaryTree {
 
     }
 
+    public int size(){
+        return size(root);
+    }
+
+    private int size(Node node) {
+        if (node == null){
+            return 0;
+        }
+
+        return 1 + size(node.left) + size(node.right);
+    }
+
+    public void display(){
+        display(root, "");
+    }
+
+    private void display(Node node, String indent) {
+        if (node == null){
+            return;
+        }
+
+        Main.out.println(indent + node.value);
+
+        display(node.left, indent + "\t");
+        display(node.right, indent + "\t");
+    }
+
+    public int largest(){
+        return largest(root);
+    }
+
+    private int largest(Node node) {
+
+        int max = node.value;
+
+        if (node.left != null){
+            max = Math.max(max, largest(node.left));
+        }
+
+        if (node.right != null){
+            max = Math.max(max, largest(node.right));
+        }
+
+        return max;
+    }
+
+    public void preOrder(){
+        preOrder(root);
+    }
+
+    private void preOrder(Node node) {
+        if (node == null){
+            return;
+        }
+
+        System.out.println(node.value);
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
+    public void inOrder(){
+        inOrder(root);
+    }
+
+    private void inOrder(Node node) {
+        if (node == null){
+            return;
+        }
+
+        inOrder(node.left);
+        System.out.println(node.value);
+        inOrder(node.right);
+    }
+
+    public void printLevel(int depth){
+        printLevel(root, depth);
+    }
+
+    private void printLevel(Node node, int depth) {
+        if (node == null){
+            return;
+        }
+
+        if (depth >= 0) {
+            printLevel(node.left, depth - 1);
+            if (depth == 0) {
+                System.out.println(node.value);
+            }
+            printLevel(node.right, depth - 1);
+        }
+    }
+
+    public int height(){
+        return height(root);
+    }
+
+    private int height(Node node) {
+        if (node == null){
+            return 0;
+        }
+
+        return 1 + Math.max(height(node.left), height(node.right));
+    }
+
+
     private class Node {
 
         private int value;
