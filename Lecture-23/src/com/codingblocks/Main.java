@@ -5,14 +5,24 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
 
-        Tries tries = new Tries();
+//        Tries tries = new Tries();
+//
+//        tries.insert("anuj");
+//        tries.insert("mona");
+//
+//        tries.remove("anuj");
+//
+//        System.out.println(tries.findPrefix("a"));
+//
 
-        tries.insert("anuj");
-        tries.insert("mona");
+        BinarySearchTree tree = new BinarySearchTree();
 
-        tries.remove("anuj");
+        for (int i = 0; i < 10000; i++) {
+            tree.insert(i);
+        }
 
-        System.out.println(tries.findPrefix("a"));
+        System.out.println(tree.height());
+
 
 
     }
